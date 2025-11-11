@@ -530,7 +530,7 @@ class IndexTTS2:
         
         # Check if audio_streamer has been ended (stopped externally)
         if audio_streamer is not None and hasattr(audio_streamer, 'finished_flags'):
-            if any(audio_streamer.finished_flags):
+            if audio_streamer.finished_flags:
                 return dict(
                     finished = True,
                     inputs = None
