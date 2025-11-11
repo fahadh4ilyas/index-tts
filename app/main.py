@@ -379,12 +379,11 @@ async def tts_streamer(
 ):
     global data_queue
 
-    batch_size = 1  # streaming a single sample per request; adapt for batching
-    sample_rate = 24000
+    sample_rate = 16000
     num_channels = 1
 
     # instantiate streamer (adjust signature if needed)
-    audio_streamer = AsyncAudioStreamer(batch_size=batch_size, timeout=1.0)  # type: ignore
+    audio_streamer = AsyncAudioStreamer(timeout=1.0)  # type: ignore
 
     data_queue.put(text, audio_base64, None, emo_vector, emo_text, lang, speaker, temperature, top_p, audio_streamer)
 
