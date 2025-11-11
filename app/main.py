@@ -163,7 +163,6 @@ async def lifespan(app: FastAPI):
         model_dir=config.model_path,
         cfg_path=os.path.join(config.model_path, 'config.yaml')
     )
-    model.eval()
     data_queue = DataQueue(max_batch_size=config.max_batch_size, model=model)
     loop = asyncio.get_event_loop()
     infinite_thread = loop.run_in_executor(executor, data_queue.infinite_loop_step)
