@@ -390,7 +390,7 @@ class IndexTTS2:
             audio,sr = self._load_and_cut_audio(spk_audio_prompt,15,False)
         else:
             audio = spk_audio_prompt
-            sr = 16000
+            sr = 22050
         audio_22k = torchaudio.transforms.Resample(sr, 22050)(audio)
         audio_16k = torchaudio.transforms.Resample(sr, 16000)(audio)
 

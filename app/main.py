@@ -55,7 +55,7 @@ class DataQueue:
                 audio_base64,
                 max_length_sec=15.0,
                 mono=True,
-                target_sr=16000,
+                target_sr=22050,
                 dtype="float32",
             )[0]
         else:
@@ -65,7 +65,7 @@ class DataQueue:
                 emo_audio_base64,
                 max_length_sec=15.0,
                 mono=True,
-                target_sr=16000,
+                target_sr=22050,
                 dtype="float32",
             )[0]
         if emo_vector is not None:
@@ -379,7 +379,7 @@ async def tts_streamer(
 ):
     global data_queue
 
-    sample_rate = 16000
+    sample_rate = 22050
     num_channels = 1
 
     # instantiate streamer (adjust signature if needed)
