@@ -108,7 +108,7 @@ def base64_audio_to_tensor(
             if max_length_sec is not None:
                 max_samples = int(max_length_sec * sr)
                 waveform = waveform[:max_samples]
-            waveform = torch.from_numpy(waveform).to(getattr(torch, dtype))
+            waveform = torch.from_numpy(waveform).unsqueeze(0).to(getattr(torch, dtype))
             return waveform, sr
         except Exception:
             # fallthrough to pydub
@@ -190,7 +190,7 @@ def base64_audio_to_tensor(
         if max_length_sec is not None:
             max_samples = int(max_length_sec * sr)
             waveform = waveform[:max_samples]
-        waveform = torch.from_numpy(waveform).to(getattr(torch, dtype))
+        waveform = torch.from_numpy(waveform).unsqueeze(0).to(getattr(torch, dtype))
         return waveform, sr
 
     except Exception as e:
