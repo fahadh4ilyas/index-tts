@@ -386,9 +386,11 @@ class IndexTTS2:
             # must always use alpha=1.0 when we don't have an external reference voice
             emo_alpha = 1.0
 
-        sr = 16000
         if not isinstance(spk_audio_prompt, torch.Tensor):
             audio,sr = self._load_and_cut_audio(spk_audio_prompt,15,False)
+        else:
+            audio = spk_audio_prompt
+            sr = 16000
         audio_22k = torchaudio.transforms.Resample(sr, 22050)(audio)
         audio_16k = torchaudio.transforms.Resample(sr, 16000)(audio)
 
@@ -429,6 +431,8 @@ class IndexTTS2:
 
         if not isinstance(emo_audio_prompt, torch.Tensor):
             emo_audio, _ = self._load_and_cut_audio(emo_audio_prompt,15,False,sr=16000)
+        else:
+            emo_audio = emo_audio_prompt
         emo_inputs = self.extract_features(emo_audio, sampling_rate=16000, return_tensors="pt")
         emo_input_features = emo_inputs["input_features"]
         emo_attention_mask = emo_inputs["attention_mask"]
